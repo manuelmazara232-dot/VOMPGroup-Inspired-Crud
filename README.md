@@ -11,7 +11,7 @@ el negocio de un grupo financiero como VOPM (Panacrédito / CrediGo): un
 cliente registra una solicitud con un monto y un plazo, y esa solicitud pasa
 por los estados `Pendiente`, `Aprobada` o `Rechazada`.
 
----
+
 
 ## 1. Requisitos
 
@@ -30,7 +30,7 @@ por los estados `Pendiente`, `Aprobada` o `Rechazada`.
   JavaScript del proyecto son propios, no se descarga ninguna fuente ni
   ningún script externo.
 
----
+
 
 ## 2. Cómo ejecutar el proyecto
 
@@ -55,7 +55,7 @@ de inmediato. Se puede vaciar dejándolo como `[]`, o simplemente borrarlo:
 la aplicación lo vuelve a crear automáticamente, vacío, la primera vez que
 lo necesita.
 
----
+
 
 ## 3. Estructura de carpetas
 
@@ -108,7 +108,7 @@ vopm-crud/
 └── README.md                       Este archivo
 ```
 
----
+
 
 ## 4. Arquitectura: por qué está organizado así
 
@@ -176,12 +176,12 @@ que traduce el namespace `App\...` directamente a una ruta dentro de
 `src/`. Es exactamente el mismo mecanismo que usa Composer por debajo (el
 estándar PSR-4), solo que escrito a mano.
 
----
+
 
 ## 5. La entidad: Solicitud de crédito
 
 | Campo             | Tipo    | Reglas de validación                                              |
-|--------------------|---------|---------------------------------------------------------------------|
+|--|||
 | `id`               | int     | Autoincremental, asignado por el repositorio. No editable.         |
 | `nombreCompleto`   | string  | Obligatorio, mínimo 3 caracteres, solo letras y espacios.          |
 | `cedula`           | string  | Obligatoria, se normaliza a solo dígitos, debe tener 11 dígitos.   |
@@ -198,7 +198,7 @@ de `SolicitudCreditoService`. Si la validación falla, se lanza una
 (uno por campo), para que el formulario pueda mostrarlos todos juntos en
 lugar de obligar al usuario a corregir un error a la vez.
 
----
+
 
 ## 6. Rutas disponibles
 
@@ -207,7 +207,7 @@ Como el proyecto no usa un sistema de rutas con reescritura de URL
 query string `action`, sobre el único front controller `public/index.php`.
 
 | Acción                          | Método | URL                                      |
-|----------------------------------|--------|-------------------------------------------|
+|-|--|-|
 | Listar todas las solicitudes     | GET    | `/index.php` o `/index.php?action=index`  |
 | Formulario de nueva solicitud    | GET    | `/index.php?action=create`                |
 | Guardar una solicitud nueva      | POST   | `/index.php?action=store`                 |
@@ -219,7 +219,7 @@ Las acciones que modifican datos (`store`, `update`, `destroy`) solo
 aceptan `POST`; si se accede a ellas por `GET`, el front controller
 responde `405 Método no permitido` sin ejecutar ninguna lógica de negocio.
 
----
+
 
 ## 7. Detalles de implementación que vale la pena señalar
 
@@ -269,7 +269,7 @@ responde `405 Método no permitido` sin ejecutar ninguna lógica de negocio.
   lee los `<summary>` de C#, mostrando la documentación al pasar el
   cursor sobre una clase o un método.
 
----
+
 
 ## 8. Sobre el frontend y su parecido con vopm.net
 
@@ -290,22 +290,3 @@ centralizados como variables CSS en el bloque `:root` de `style.css`, así
 que si se cuenta con los valores de marca exactos (código de color, familia
 tipográfica específica), ajustarlos es cuestión de cambiar esas variables
 en un solo lugar, sin tocar el resto del archivo.
-
----
-
-## 9. Extender el proyecto
-
-Algunas ideas de continuación, coherentes con la arquitectura ya montada:
-
-- **Cambiar el almacenamiento a una base de datos real**: se escribiría
-  una nueva clase, por ejemplo `MySqlSolicitudCreditoRepository`, que
-  implemente `SolicitudCreditoRepositoryInterface`, y se cambiaría una
-  sola línea en `public/index.php` (el *composition root*) para
-  inyectarla en lugar de `JsonSolicitudCreditoRepository`. Ninguna otra
-  clase del proyecto tendría que modificarse.
-- **Agregar paginación y búsqueda** en `solicitudes/index.php`, apoyándose
-  en un nuevo método del repositorio, por ejemplo `buscarConFiltros()`.
-- **Agregar pruebas automatizadas** con PHPUnit sobre
-  `SolicitudCreditoService`, ya que no depende de HTTP ni de archivos
-  reales (se le puede inyectar un repositorio falso en memoria que
-  implemente la misma interfaz, sin necesidad de tocar disco).
