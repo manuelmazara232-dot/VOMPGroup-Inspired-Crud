@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "nombreCompleto": "Maria Fernandez Reyes",
+        "cedula": "40212345678",
+        "correo": "maria.fernandez@correo.com",
+        "telefono": "8095551234",
+        "montoSolicitado": 75000,
+        "plazoMeses": 18,
+        "estado": "Pendiente",
+        "fechaSolicitud": "2026-09-10 09:15:00"
+    },
+    {
+        "id": 2,
+        "nombreCompleto": "Carlos Perez Diaz",
+        "cedula": "22198765432",
+        "correo": "carlos.perez@correo.com",
+        "telefono": "8295559876",
+        "montoSolicitado": 150000,
+        "plazoMeses": 24,
+        "estado": "Aprobada",
+        "fechaSolicitud": "2026-09-05 14:30:00"
+    },
+    {
+        "id": 3,
+        "nombreCompleto": "asa",
+        "cedula": "40231459575",
+        "correo": "carlos.perez@correo.com",
+        "telefono": "8295559876",
+        "montoSolicitado": 90000,
+        "plazoMeses": 100,
+        "estado": "Aprobada",
+        "fechaSolicitud": "2026-09-18 18:48:07"
+    }
+]
